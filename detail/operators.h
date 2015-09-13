@@ -15,6 +15,37 @@
 
 BEGIN_DIFFERENTIONABLE_FUNCTION_NAMESPACE
 
+inline bool operator==(FunctionPtr f, FunctionPtr g) {
+    if(f->type == g->type) {
+        switch(f->type) {
+            case Type::Id:
+                return true;
+            case Type::Constant:
+                return f->apply(0) == g->apply(0);
+            case Type::Neg:
+            case Type::Exp:
+            case Type::Sqrt:
+            case Type::Log:
+            case Type::Sin:
+            case Type::Cos:
+            case Type::Tan:
+            case Type::Asin:
+            case Type::Acos:
+            case Type::Atan:
+                return f->f == g->f;
+            case Type::Compose:
+            case Type::Add:
+            case Type::Mul:
+            case Type::Div:
+            case Type::Pow:
+                return (f->f == g->f) && (f->g == g->g);
+            default:
+                break;
+        }
+    }
+    return false;
+}
+
 #pragma mark +
 
 inline FunctionPtr operator+(FunctionPtr f) {
