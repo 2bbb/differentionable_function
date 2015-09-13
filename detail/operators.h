@@ -85,6 +85,9 @@ inline FunctionPtr operator*(double a, FunctionPtr f) {
 #pragma mark /
 
 inline FunctionPtr operator/(FunctionPtr f, FunctionPtr g) {
+    if(g == c1) {
+        return f;
+    }
     return ref<Div>(f, g);
 }
 
