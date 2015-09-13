@@ -62,10 +62,12 @@ inline FunctionPtr operator-(double a, FunctionPtr f) {
 #pragma mark *
 
 inline FunctionPtr operator*(FunctionPtr f, FunctionPtr g) {
-    if(f == c0) {
-        return -g;
-    } else if(g == c0) {
+    if(f == c0 || g == c0) {
+        return c0;
+    } else if(g == c1) {
         return f;
+    } else if(f == c1) {
+        return g;
     } else if(f->type == Type::Constant && g->type == Type::Constant) {
         return c(f->apply(0) * g->apply(0));
     }
