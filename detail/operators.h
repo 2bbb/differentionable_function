@@ -158,26 +158,44 @@ inline FunctionPtr log(FunctionPtr f = Variable()) {
 }
 
 inline FunctionPtr sin(FunctionPtr f = Variable()) {
+    if(f->type == Type::Asin) {
+        return f->f;
+    }
     return ref<Sin>(f);
 }
 
 inline FunctionPtr cos(FunctionPtr f = Variable()) {
+    if(f->type == Type::Acos) {
+        return f->f;
+    }
     return ref<Cos>(f);
 }
 
 inline FunctionPtr tan(FunctionPtr f = Variable()) {
+    if(f->type == Type::Atan) {
+        return f->f;
+    }
     return ref<Tan>(f);
 }
 
 inline FunctionPtr asin(FunctionPtr f = Variable()) {
+    if(f->type == Type::Sin) {
+        return f->f;
+    }
     return ref<Asin>(f);
 }
 
 inline FunctionPtr acos(FunctionPtr f = Variable()) {
+    if(f->type == Type::Cos) {
+        return f->f;
+    }
     return ref<Acos>(f);
 }
 
 inline FunctionPtr atan(FunctionPtr f = Variable()) {
+    if(f->type == Type::Tan) {
+        return f->f;
+    }
     return ref<Atan>(f);
 }
 
