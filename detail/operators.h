@@ -99,7 +99,9 @@ inline FunctionPtr operator/(double a, FunctionPtr f) {
 #pragma mark ^
 
 inline FunctionPtr operator^(FunctionPtr f, FunctionPtr g) {
-    if(g->type == Type::Constant && g->apply(0) == 1.0) {
+    if(f == c1) {
+        return c1;
+    } else if(g == c1) {
         return f;
     }
     return ref<Pow>(f, g);
@@ -113,10 +115,15 @@ inline FunctionPtr operator^(FunctionPtr f, double a) {
     return f ^ c(a);
 }
 
+inline FunctionPtr exp(FunctionPtr f);
 inline FunctionPtr operator^(double a, FunctionPtr f) {
-    if(a == 0.0) {
+    if(a == e) {
+        return exp(f);
+    } else if(a == 0.0) {
         /// TODO: 0^0
         return c0;
+    } else if(a == 1.0) {
+        return c1;
     }
     return c(a) ^ f;
 }
