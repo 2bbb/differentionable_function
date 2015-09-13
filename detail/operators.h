@@ -118,6 +118,8 @@ inline FunctionPtr operator*(double a, FunctionPtr f) {
 inline FunctionPtr operator/(FunctionPtr f, FunctionPtr g) {
     if(g == c1) {
         return f;
+    } else if(f == g) {
+        return c1;
     }
     return ref<Div>(f, g);
 }
