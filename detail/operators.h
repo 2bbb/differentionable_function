@@ -75,11 +75,11 @@ inline FunctionPtr operator*(FunctionPtr f, FunctionPtr g) {
 }
 
 inline FunctionPtr operator*(FunctionPtr f, double a) {
-    return (a == 0.0) ? c0 : (a == 1.0) ? c1 : (f * c(a));
+    return (a == 0.0) ? c0 : (a == 1.0) ? f : (f * c(a));
 }
 
 inline FunctionPtr operator*(double a, FunctionPtr f) {
-    return (a == 0.0) ? c0 : (a == 1.0) ? c1 : (c(a) * f);
+    return (a == 0.0) ? c0 : (a == 1.0) ? f : (c(a) * f);
 }
 
 #pragma mark /
